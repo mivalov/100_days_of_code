@@ -1,10 +1,11 @@
 # Day 62: Private Diary
 
-from replit import db
-from datetime import datetime
-from getpass import getpass
 import os
 import time
+from datetime import datetime
+from getpass import getpass
+
+from replit import db
 
 
 def display_options() -> None:

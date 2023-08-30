@@ -1,5 +1,6 @@
 # Day 39: Hangman
 import os
+import platform
 import random
 import time
 
@@ -71,7 +72,19 @@ HANGMAN_PICS = [r'''
 ''']
 
 
+def corss_platform_clear() -> str:
+    """Checks local system and returns its clear screen command."""
+    local_system = platform.system().lower()
+    if local_system in ['linux', 'darwin']:
+        return 'clear'
+    elif local_system == 'windows':
+        return 'cls'
+    else:
+        raise SystemExit
+
+
 def main() -> None:
+    clear_command = corss_platform_clear()
     msg = '🌟 Hangman 🌟  '
     underline = 20 * '='
     lives = 6
@@ -79,7 +92,7 @@ def main() -> None:
     picked_letters = set()
     shown_word = len(word) * '_'
     while True:
-        os.system('clear')
+        os.system(f'{clear_command}')
         print(f'{msg: ^20}', underline, sep='\n')
         print('', f'{shown_word: ^20}', '', sep='\n')
         if lives <= 0:
